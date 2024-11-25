@@ -38,7 +38,9 @@ avg_order_value_df = pd.read_sql_query(query_avg_order_value, conn)
 
 # Recência
 query_recency = """
-SELECT c.customer_unique_id, MIN(DATE('now') - DATE(o.order_purchase_timestamp)) AS recency
+SELECT c.customer_unique_id, MIN(DATE('now') - DATE(o.order_purchase_timestamp)) AS recency,
+o.order_delivered_customer_date AS date
+
 FROM orders o
 JOIN customers c ON o.customer_id = c.customer_id
 GROUP BY c.customer_unique_id
@@ -55,7 +57,7 @@ crm_data = pd.merge(crm_data, avg_order_value_df, on='customer_unique_id', how='
 crm_data = pd.merge(crm_data, recency_df, on='customer_unique_id', how='outer')
 
 # Ajustar os nomes das colunas para melhorar o entendimento
-crm_data.columns = ['customer_unique_id', 'total_revenue', 'purchase_frequency', 'avg_order_value', 'recency']
+crm_data.columns = ['customer_unique_id', 'total_revenue', 'purchase_frequency', 'avg_order_value', 'recency','date']
 
 # Exportar para CSV
 crm_data.to_csv('crm_data.csv', index=False)
