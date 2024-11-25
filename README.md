@@ -24,9 +24,9 @@ graph TD
 ```plaintext
 .
 ├── data/                  # Pasta para os arquivos do dataset e arquivos gerados
-│   ├── customers.csv      # Dados de clientes
-│   ├── orders.csv         # Dados de pedidos
-│   ├── items.csv          # Dados de itens
+│   ├── olist_customers_dataset.csv             # Dados de clientes
+│   ├── olist_orders_dataset.csv                # Dados de pedidos
+│   ├── olist_order_items_dataset.csv           # Dados de itens
 ├── src/                   # Scripts Python e banco de dados SQLite
 │   ├── crm_data.csv       # Arquivo CSV gerado com as métricas de CRM
 │   ├── insertion_db.py    # Script para inserir os dados no SQLite
